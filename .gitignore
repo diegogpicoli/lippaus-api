@@ -1,0 +1,16 @@
+/node_modules
+/dist
+/coverage
+.env
+.env.*.local
+*.log
+npm-debug.log*
+yarn-error.log*
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+CONVENTIONS.md
+/src/generated
+*.tsbuildinfo
