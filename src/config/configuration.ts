@@ -8,6 +8,8 @@ export interface AppEnv {
   S3_ACCESS_KEY_ID: string;
   S3_SECRET_ACCESS_KEY: string;
   S3_FORCE_PATH_STYLE: boolean;
+  JWT_SECRET: string;
+  JWT_EXPIRES_IN: string;
 }
 
 export function loadConfig(): AppEnv {
@@ -21,5 +23,7 @@ export function loadConfig(): AppEnv {
     S3_ACCESS_KEY_ID: process.env.S3_ACCESS_KEY_ID ?? '',
     S3_SECRET_ACCESS_KEY: process.env.S3_SECRET_ACCESS_KEY ?? '',
     S3_FORCE_PATH_STYLE: process.env.S3_FORCE_PATH_STYLE !== 'false',
+    JWT_SECRET: process.env.JWT_SECRET ?? '',
+    JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN ?? '1d',
   };
 }

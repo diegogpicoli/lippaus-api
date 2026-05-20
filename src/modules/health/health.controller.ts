@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { HealthCheck, HealthCheckService } from '@nestjs/terminus';
+import { Public } from '../auth/decorators/public.decorator';
 import { PrismaService } from '../prisma/services/prisma.service';
 import { S3Service } from '../storage/services/s3.service';
 import { DatabaseHealthService } from './services/database-health.service';
@@ -15,6 +16,7 @@ export class HealthController {
     private readonly s3: S3Service,
   ) {}
 
+  @Public()
   @Get()
   @HealthCheck()
   check() {
