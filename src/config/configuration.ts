@@ -3,6 +3,7 @@ export interface AppEnv {
   PORT: number;
   DATABASE_URL: string;
   S3_ENDPOINT: string;
+  S3_PUBLIC_URL: string;
   S3_REGION: string;
   S3_BUCKET: string;
   S3_ACCESS_KEY_ID: string;
@@ -18,6 +19,7 @@ export function loadConfig(): AppEnv {
     PORT: Number.parseInt(process.env.PORT ?? '3000', 10),
     DATABASE_URL: process.env.DATABASE_URL ?? '',
     S3_ENDPOINT: process.env.S3_ENDPOINT ?? '',
+    S3_PUBLIC_URL: process.env.S3_PUBLIC_URL ?? '',
     S3_REGION: process.env.S3_REGION ?? 'us-east-1',
     S3_BUCKET: process.env.S3_BUCKET ?? '',
     S3_ACCESS_KEY_ID: process.env.S3_ACCESS_KEY_ID ?? '',

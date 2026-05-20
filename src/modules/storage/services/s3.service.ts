@@ -56,6 +56,10 @@ export class S3Service implements OnModuleInit {
   }
 
   getPublicUrl(key: string): string {
+    const publicUrl = this.config.get('S3_PUBLIC_URL', { infer: true });
+    if (publicUrl) {
+      return `${publicUrl}/${key}`;
+    }
     const endpoint = this.config.get('S3_ENDPOINT', { infer: true });
     return `${endpoint}/${this.bucket}/${key}`;
   }
