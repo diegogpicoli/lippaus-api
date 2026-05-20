@@ -4,6 +4,7 @@ import { loadConfig } from './config/configuration';
 import { AuthModule } from './modules/auth/auth.module';
 import { HealthModule } from './modules/health/health.module';
 import { PrismaModule } from './modules/prisma/prisma.module';
+import { ProductsModule } from './modules/products/products.module';
 import { StorageModule } from './modules/storage/storage.module';
 
 @Module({
@@ -13,6 +14,7 @@ import { StorageModule } from './modules/storage/storage.module';
     StorageModule,
     HealthModule,
     AuthModule,
+    ProductsModule,
   ],
 })
 export class AppModule {}
