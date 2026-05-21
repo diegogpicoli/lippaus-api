@@ -7,6 +7,7 @@ import { setupSwagger } from './config/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const config = app.get<ConfigService<AppEnv, true>>(ConfigService);
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -16,11 +17,14 @@ async function bootstrap() {
     }),
   );
 
+  app.enableCors({
+    origin: config.get('CORS_ORIGINS', { infer: true }),
+  });
+
   app.enableShutdownHooks();
 
   setupSwagger(app);
 
-  const config = app.get<ConfigService<AppEnv, true>>(ConfigService);
   const port = config.get('PORT', { infer: true });
   await app.listen(port);
 }
