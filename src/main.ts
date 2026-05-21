@@ -17,9 +17,7 @@ async function bootstrap() {
     }),
   );
 
-  app.enableCors({
-    origin: config.get('CORS_ORIGINS', { infer: true }),
-  });
+  app.enableCors({ origin: '*' });
 
   app.enableShutdownHooks();
 

@@ -13,6 +13,7 @@ import {
   Post,
   Query,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -23,6 +24,7 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
+import { Throttle, ThrottlerGuard } from '@nestjs/throttler';
 import { ProductStatus } from '../../generated/prisma/client';
 import { CreateProductDto } from './dto/create-product.dto';
 import { ListProductsQueryDto } from './dto/list-products-query.dto';
@@ -46,6 +48,8 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post()
+  @UseGuards(ThrottlerGuard)
+  @Throttle({ default: { limit: 30, ttl: 60 * 1000 } })
   @UseInterceptors(FileInterceptor('foto'))
   @ApiConsumes('multipart/form-data')
   @ApiOperation({ summary: 'Cadastrar um produto' })
@@ -84,6 +88,8 @@ export class ProductsController {
   }
 
   @Patch(':id')
+  @UseGuards(ThrottlerGuard)
+  @Throttle({ default: { limit: 30, ttl: 60 * 1000 } })
   @UseInterceptors(FileInterceptor('foto'))
   @ApiConsumes('multipart/form-data')
   @ApiOperation({ summary: 'Atualizar um produto' })

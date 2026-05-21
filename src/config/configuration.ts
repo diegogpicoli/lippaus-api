@@ -11,7 +11,6 @@ export interface AppEnv {
   S3_FORCE_PATH_STYLE: boolean;
   JWT_SECRET: string;
   JWT_EXPIRES_IN: string;
-  CORS_ORIGINS: string;
 }
 
 export function loadConfig(): AppEnv {
@@ -28,6 +27,5 @@ export function loadConfig(): AppEnv {
     S3_FORCE_PATH_STYLE: process.env.S3_FORCE_PATH_STYLE !== 'false',
     JWT_SECRET: process.env.JWT_SECRET ?? '',
     JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN ?? '1d',
-    CORS_ORIGINS: process.env.CORS_ORIGINS ?? 'http://localhost:3001',
   };
 }
